@@ -1,0 +1,301 @@
+/* CSS Reset and Base Styles */
+* {
+    box-sizing: border-box;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden; /* Prevent scrolling */
+    background: linear-gradient(135deg, #fff0f5 0%, #ffd1dc 100%); /* Romantic pastel pink */
+    font-family: 'Outfit', sans-serif;
+}
+
+/* Canvas for hearts */
+#heartCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none; /* Let clicks pass through */
+}
+
+/* Scene Management */
+.scene {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+    transition: opacity 1s ease-in-out, visibility 1s;
+}
+
+.scene.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+/* -----------------------------
+   Welcome Card (Glassmorphism)
+   ----------------------------- */
+.welcome-card {
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-radius: 24px;
+    padding: 50px 40px;
+    text-align: center;
+    box-shadow: 0 15px 35px rgba(255, 105, 180, 0.15), inset 0 0 0 1px rgba(255, 255, 255, 0.6);
+    max-width: 90%;
+    width: 500px;
+    position: relative;
+    cursor: pointer;
+    transform: translateY(0);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.welcome-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 45px rgba(255, 105, 180, 0.25), inset 0 0 0 1px rgba(255, 255, 255, 0.8);
+}
+
+.bunting {
+    position: absolute;
+    top: -20px;
+    left: 0;
+    width: 100%;
+    font-size: 2rem;
+    letter-spacing: 5px;
+    text-align: center;
+    z-index: 10;
+    pointer-events: none;
+}
+
+.decorations {
+    font-size: 3.5rem;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+}
+
+.calligraphy {
+    font-family: 'Great Vibes', cursive;
+    font-size: 4.5rem;
+    color: #ff4757;
+    margin: 10px 0;
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8);
+}
+
+.instruction {
+    color: #ff4757;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-top: 20px;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(1.05); }
+}
+
+/* -----------------------------
+   3D Flip Greeting Card
+   ----------------------------- */
+#cardScene {
+    perspective: 1200px; /* Provides 3D space */
+}
+
+.card-container {
+    width: 400px;
+    height: 560px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 1.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+    cursor: pointer;
+}
+
+/* When opened, shift the entire container right to center the open book */
+.card-container.open {
+    transform: translateX(50%);
+}
+
+.card-cover {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform-origin: left center;
+    transform-style: preserve-3d;
+    transition: transform 1.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+    z-index: 2;
+}
+
+.card-container.open .card-cover {
+    transform: rotateY(-180deg);
+}
+
+.card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 0 20px 20px 0;
+}
+
+.card-front {
+    background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 5px 5px 25px rgba(0,0,0,0.2), inset 2px 0 5px rgba(255,255,255,0.3);
+    border: 1px solid rgba(255,255,255,0.4);
+    border-left: none;
+}
+
+.card-front h2 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 4rem;
+    margin: 0;
+    text-shadow: 2px 2px 6px rgba(0,0,0,0.2);
+    text-align: center;
+    line-height: 1.1;
+}
+
+.card-front .art {
+    font-size: 6rem;
+    margin-top: 20px;
+    filter: drop-shadow(0 10px 10px rgba(0,0,0,0.2));
+}
+
+.tap-hint {
+    margin-top: 30px;
+    font-size: 1rem;
+    background: rgba(255,255,255,0.2);
+    padding: 5px 15px;
+    border-radius: 20px;
+    animation: pulse 2s infinite;
+}
+
+.card-back {
+    background: linear-gradient(135deg, #ffe4e1 0%, #fff0f5 100%);
+    transform: rotateY(180deg); /* Faces inward initially */
+    box-shadow: inset -5px 0 15px rgba(0,0,0,0.05);
+    border: 1px solid #ffb6c1;
+    border-right: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-back-content {
+    font-size: 5rem;
+    filter: drop-shadow(0 5px 5px rgba(0,0,0,0.1));
+}
+
+.card-inside {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #fff0f5 0%, #ffe4e1 100%);
+    border-radius: 0 20px 20px 0;
+    box-shadow: inset 5px 0 15px rgba(0,0,0,0.05), 10px 10px 30px rgba(0,0,0,0.15);
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    box-sizing: border-box;
+    border: 1px solid #ffb6c1;
+    border-left: none;
+}
+
+/* Staggered entry for inner content */
+.inside-content {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+    transition-delay: 0s;
+    text-align: center;
+}
+
+.card-container.open .inside-content {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.6s; /* Wait for card to open mostly */
+}
+
+.inside-content h3 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 3.5rem;
+    color: #ff4757;
+    margin: 0 0 15px 0;
+}
+
+.inside-content p {
+    font-size: 1.35rem;
+    color: #444;
+    line-height: 1.7;
+}
+
+.inside-decor {
+    font-size: 2.5rem;
+    margin-top: 25px;
+}
+
+/* -----------------------------
+   Responsive Adjustments
+   ----------------------------- */
+@media (max-width: 768px) {
+    .card-container {
+        width: 320px;
+        height: 480px;
+    }
+    .calligraphy {
+        font-size: 3.5rem;
+    }
+    .welcome-card {
+        padding: 40px 20px;
+    }
+}
+
+@media (max-width: 500px) {
+    .card-container {
+        width: 175px;
+        height: 380px;
+    }
+    .card-front h2 {
+        font-size: 2.5rem;
+    }
+    .card-front .art {
+        font-size: 4rem;
+    }
+    .inside-content h3 {
+        font-size: 2.2rem;
+    }
+    .inside-content p {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+    .card-inside {
+        padding: 20px;
+    }
+}
