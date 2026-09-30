@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday!</title>
+    <!-- Modern Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Outfit:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Canvas for falling heart particles -->
+    <canvas id="heartCanvas"></canvas>
+
+    <!-- Welcome Scene -->
+    <div class="scene" id="welcomeScene">
+        <div class="welcome-card">
+            <div class="bunting">🚩🎏🎊🎉🎏🚩</div>
+            <div class="decorations">
+                <span class="balloon">🎈</span>
+                <span class="cake">🎂</span>
+                <span class="confetti">🎉</span>
+            </div>
+            <h1 class="calligraphy">Happy Birthday!</h1>
+            <p class="instruction">Tap anywhere to celebrate</p>
+        </div>
+    </div>
+
+    <!-- 3D Card Scene -->
+    <div class="scene hidden" id="cardScene">
+        <div class="card-container" id="birthdayCard">
+            <!-- The folding cover of the card -->
+            <div class="card-cover">
+                <!-- Front face of the cover -->
+                <div class="card-front">
+                    <h2>Happy<br>Birthday</h2>
+                    <div class="art">🎁</div>
+                    <p class="tap-hint">Click to Open</p>
+                </div>
+                <!-- Back face of the cover (Inner left) -->
+                <div class="card-back">
+                    <div class="card-back-content">🍰</div>
+                </div>
+            </div>
+            <!-- The base inside of the card (Inner right) -->
+            <div class="card-inside">
+                <div class="inside-content">
+                    <h3>To You!</h3>
+                    <p>
+                        Chúc mừng sinh nhật! Chúc chị mọi điều tốt đẹp nhất.<br>
+                        Hy vọng chị của tuổi mới sẽ luôn mạnh mẽ, hạnh phúc và tỏa sáng hơn hôm qua.<br>
+                        Những gì trước đây từng cảm thấy khó khăn, giờ đây tin rằng chị đều sẽ vượt qua để chạm tới ước mơ.<br>
+                        Chị tuyệt vời lắm, hãy luôn tin tưởng vào chính mình nhé!<br>
+                        Đừng để những lời tiêu cực làm lung lay niềm tin và nụ cười của chị.<br><br>
+                        <strong>Chúc mừng sinh nhật chị Yến!</strong>
+                    </p>
+                    <div class="inside-decor">✨🥂✨</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Background Music (Royalty free/Standard placeholder) -->
+    <audio id="bgMusic" loop>
+        <source src="https://www.mfiles.co.uk/mp3-downloads/happy-birthday-to-you.mp3" type="audio/mpeg">
+    </audio>
+
+    <script src="main.js"></script>
+</body>
+</html>
